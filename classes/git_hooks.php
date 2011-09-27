@@ -65,6 +65,7 @@ class git_hooks extends hooks {
 	 * @return array
 	 */
 	protected function getChangedFiles(array $filetypes=array()) {
+		$this->getCommitList();
 		return 1;
 	}
 }
