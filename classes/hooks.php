@@ -95,6 +95,7 @@ abstract class hooks {
 			}
 			$method = "_test$test";
 			$this->msg = '';
+			var_dump($params);
 			$result +=!call_user_func_array(array($this, $method), $params);
 			if ($this->msg) {
 				$messages .= " *) $this->msg\n";

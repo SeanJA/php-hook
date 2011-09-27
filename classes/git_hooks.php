@@ -48,6 +48,8 @@ class git_hooks extends hooks {
 		$return = 0;
 		exec('git rev-parse --verify HEAD 2> /dev/null', $output, $return);
 		$against = $return == 0 ? 'HEAD' : '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
+		var_dump($against);
+		die(1);
 
 		exec("git diff-index --cached --name-only {$against}", $output);
 
@@ -65,6 +67,7 @@ class git_hooks extends hooks {
 	 * @return array
 	 */
 	protected function getChangedFiles(array $filetypes=array()) {
+		var_dump($filetypes);
 		$this->getCommitList();
 		return 1;
 	}
