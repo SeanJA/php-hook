@@ -4,8 +4,13 @@ require 'hooks.php';
 
 class git_hooks extends hooks {
 	
+	/**
+	 * override the constructor because git only sends through one param, you have to figure out the second one
+	 * @param string $repository
+	 * @param array $tests
+	 */
 	public function __construct($repository, array $tests) {
-		return parent::__construct($repository, $transaction = null, $tests);
+		parent::__construct($repository, $transaction = null, $tests);
 	}
 
 	/**
