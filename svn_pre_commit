@@ -1,0 +1,31 @@
+#!/usr/bin/php
+<?php
+require 'classes/svn_hooks.php';
+putenv('PATH=/usr/bin');
+
+//change the location of php
+svn_hooks::$PHP = "/usr/bin/php5/php";
+
+//change the debug functions
+svn_hooks::$debug_functions = array(
+	'var_dump',
+	'print_r',
+	'oops',
+);
+
+//change the patterns
+svn_hooks::$debug_patterns = array(
+	'xdebug_.*?',
+	'test_.*?',
+);
+
+//set the file types
+$file_types = array('php', 'inc');
+new svn_hooks($argv[1], $argv[2], array(
+	//at least 3 characters in your commit message
+    'LogMessageLength' => array(3),
+	//php lint these files
+    'PHPLint' => $file_types,
+	//check these files for debug output
+	'DebugOutput' => $file_types
+));
