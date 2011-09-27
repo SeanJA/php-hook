@@ -44,20 +44,18 @@ class git_hooks extends hooks {
 	 * @return array filenames are keys and status letters are values
 	 */
 	protected function getCommitList() {
-		$output = array();
-		$return = 0;
-		exec('git rev-parse --verify HEAD 2> /dev/null', $output, $return);
-		$against = $return == 0 ? 'HEAD' : '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
-		var_dump($against);
-		die(1);
-
-		exec("git diff-index --cached --name-only {$against}", $output);
-
-		$exit_status = 0;
-
-		var_dump($output);
-
-		return 1;
+		if(!$this->_commitList){
+			$output = array();
+			$return = 0;
+			exec('git rev-parse --verify HEAD 2> /dev/null', $output, $return);
+			$against = $return == 0 ? 'HEAD' : '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
+			
+			exec("git diff-index --cached --name-only {$against}", $output);
+			foreach($output as $o){
+				$this->_commitList[$o] = pathinfo($o, PATHINFO_EXTENSION);
+			}
+		}
+		return $this->_commitList;
 	}
 
 	/**
@@ -67,8 +65,13 @@ class git_hooks extends hooks {
 	 * @return array
 	 */
 	protected function getChangedFiles(array $filetypes=array()) {
-		var_dump($filetypes);
-		$this->getCommitList();
-		return 1;
+		$committed = $this->getCommitList();
+		$changed = array();
+		foreach($committed as $file=>$file_type){
+			if(in_array($file_type, $filetypes)){
+				$changed[] = $file;
+			}
+		}
+		return $changed;
 	}
 }

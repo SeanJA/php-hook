@@ -8,7 +8,7 @@ To see more options, check out svn_pre_commit
 		//at least 3 characters in your commit message
 		'LogMessageLength' => array(3),
 		//php lint these files
-		'PHPLint' => $file_types,
+		'PHPLint' => array($file_types),
 		//check these files for debug output
-		'DebugOutput' => $file_types
+		'DebugOutput' => array($file_types)
 	));
