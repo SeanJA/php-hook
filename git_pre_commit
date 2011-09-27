@@ -21,7 +21,7 @@ git_hooks::$debug_patterns = array(
 
 //set the file types
 $file_types = array('php', 'inc');
-new svn_hooks($argv[1], $argv[2], array(
+new git_hooks($argv[1], $argv[2], array(
 	//at least 3 characters in your commit message
     'LogMessageLength' => array(3),
 	//php lint these files

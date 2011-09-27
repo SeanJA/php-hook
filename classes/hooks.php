@@ -152,30 +152,6 @@ abstract class hooks {
 	 * @param int $minlength minimum length of log message
 	 * @return bool
 	 */
-	abstract protected function _testLogMessageLength($minlength = 1);
-
-	/**
-	 * Tests if the committed files pass PHP syntax checking
-	 *
-	 * @param array $filetypes array of file types which should be tested
-	 * @return bool
-	 */
-	abstract protected function _testPHPLint(array $filetypes=array());
-
-	/**
-	 * Check if files have var_dump, var_export, or print_r in them
-	 *
-	 * @param array $filetypes
-	 * @return bool
-	 */
-	abstract protected function _testDebugOutput(array $filetypes = array());
-
-	/**
-	 * Check if log message validates length rules
-	 *
-	 * @param int $minlength minimum length of log message
-	 * @return bool
-	 */
 	protected function _testLogMessageLength($minlength = 1) {
 		$length = strlen(trim($this->getLogMessage()));
 		if ($length < $minlength) {
