@@ -3,6 +3,10 @@
 require 'hooks.php';
 
 class git_hooks extends hooks {
+	
+	public function __construct($repository, array $tests) {
+		return parent::__construct($repository, $transaction = null, $tests);
+	}
 
 	/**
 	 * Get commit log message
@@ -10,7 +14,7 @@ class git_hooks extends hooks {
 	 * @return string
 	 */
 	protected function getLogMessage() {
-		
+		return 1;
 	}
 
 	/**
@@ -21,7 +25,7 @@ class git_hooks extends hooks {
 	 * @throws Exception
 	 */
 	protected function getFileContent($file) {
-		
+		return 1;
 	}
 
 	/**
@@ -31,7 +35,7 @@ class git_hooks extends hooks {
 	 * @return array
 	 */
 	protected function getFileProps($file) {
-		
+		return 1;
 	}
 
 	/**
@@ -49,16 +53,7 @@ class git_hooks extends hooks {
 
 		$exit_status = 0;
 
-		foreach ($output as $file) {
-
-			$lint_output = array();
-			exec("php -l " . escapeshellarg($file), $lint_output, $return);
-			if ($return == 0) {
-				continue;
-			}
-			echo implode("\n", $lint_output), "\n";
-			$exit_status = 1;
-		}
+		var_dump($output);
 
 		return 1;
 	}
@@ -70,7 +65,6 @@ class git_hooks extends hooks {
 	 * @return array
 	 */
 	protected function getChangedFiles(array $filetypes=array()) {
-		
+		return 1;
 	}
-
 }

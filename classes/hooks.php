@@ -104,7 +104,7 @@ abstract class hooks {
 			$messages = rtrim($messages);
 			fwrite(STDERR, "----------------\n$messages\n----------------");
 		}
-		return $result;
+		return ($result >= 1)? 1:0;
 	}
 
 	/**
