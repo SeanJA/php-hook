@@ -203,7 +203,7 @@ abstract class hooks {
 	 */
 	protected function _testDebugOutput(array $filetypes = array()) {
 		$result = true;
-		$files = $this->getChangedFiles(array_keys($filetypes));
+		$files = $this->getChangedFiles($filetypes);
 		foreach ($files as $file => $extension) {
 			$content = $this->getFileContent($file);
 			$tokens = token_get_all($content);
