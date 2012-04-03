@@ -204,6 +204,19 @@ abstract class hooks {
 	protected function _testDebugOutput(array $filetypes = array()) {
 		$result = true;
 		$files = $this->getChangedFiles($filetypes);
+		static $debug_bypass;
+		if(!is_bool($debug_bypass)){
+			$message = trim($this->_getLogMessage());
+			if(stripos($message, '!debug') === 0){
+				$debug_bypass = true;
+    			} else {
+    				$debug_bypass = false;
+    			}
+    			
+		}
+		if($debug_bypass){
+			return true;
+		}
 		foreach ($files as $file => $extension) {
 			$content = $this->getFileContent($file);
 			$tokens = token_get_all($content);
