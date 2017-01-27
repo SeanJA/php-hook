@@ -75,8 +75,7 @@ abstract class hooks {
 	 * Run subversion pre-commit tests
 	 *
 	 * @param array $tests array of test names to run
-	 * @return int result code, 0 == all test passed, other value 
-	  represents
+	 * @return int result code, 0 == all test passed, other value represents
 	 *  number of failed tests
 	 */
 	protected function runTests(array $tests) {
